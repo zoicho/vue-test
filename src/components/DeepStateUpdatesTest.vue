@@ -14,14 +14,21 @@ const updateItems = () => {
     iteration.value = 0
   }
 
-  items.value.forEach(item => {
-    item.items?.forEach(subItem => {
-      subItem.items?.forEach(nestedItem => {
-        nestedItem.label = `Item ${iteration.value}`
-      })
-    })
-  })
+  const updateLabels = (items: DeepItem[]) => {
+    for (const item of items) {
+      if (item.items?.length) {
+        for (const subItem of item.items) {
+          if (subItem.items?.length) {
+            for (const nestedItem of subItem.items) {
+              nestedItem.label = `Item ${iteration.value}`
+            }
+          }
+        }
+      }
+    }
+  }
 
+  updateLabels(items.value)
 }
 
 onMounted(() => {
