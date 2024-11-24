@@ -15,7 +15,7 @@ const updateItems = () => {
     iteration.value = 0
   }
 
-  items.value = items.value.map((item) => {
+  const updatedItems = items.value.map((item) => {
     if (item.items) {
       item.items = item.items.map((iItem) => {
         if (iItem.items) {
@@ -29,6 +29,8 @@ const updateItems = () => {
     }
     return item;
   });
+
+  items.value = updatedItems
 
 }
 
