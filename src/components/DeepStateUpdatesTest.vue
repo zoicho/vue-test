@@ -14,27 +14,27 @@ const updateItems = () => {
     iteration.value = 0
   }
 
-  const updateLabels = (items: DeepItem[]) => {
-    for (const item of items) {
-      if (item.items?.length) {
-        for (const subItem of item.items) {
-          if (subItem.items?.length) {
-            for (const nestedItem of subItem.items) {
-              nestedItem.label = `Item ${iteration.value}`
-            }
-          }
+  items.value.map((item) => {
+    if (item.items) {
+      item.items = item.items.map((iItem) => {
+        if (iItem.items) {
+          iItem.items = iItem.items.map((iiItem) => ({
+            ...iiItem,
+            label: `Item ${iteration.value}`,
+          }));
         }
-      }
+        return iItem;
+      });
     }
-  }
+    return item;
+  });
 
-  updateLabels(items.value)
 }
 
 onMounted(() => {
   interval.value = setInterval(() => {
     updateItems()
-  }, 200)
+  }, 100)
 })
 
 onUnmounted(() => {
