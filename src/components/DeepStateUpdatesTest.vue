@@ -41,7 +41,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  if (interval.value) {
+  if (interval.value !== null) {
     clearInterval(interval.value)
   }
 })
