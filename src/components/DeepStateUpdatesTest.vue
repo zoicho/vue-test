@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import {onMounted, onUnmounted,ref} from 'vue'
+import {onMounted, onUnmounted,ref,shallowRef} from 'vue'
 import {generateDeepItems} from './../utils/utils.ts'
 import type {DeepItem} from './../utils/utils.ts'
 
-const items = ref<DeepItem[]>(generateDeepItems(5))
+//const items = ref<DeepItem[]>(generateDeepItems(5))
+const items = shallowRef<DeepItem[]>(generateDeepItems(5))
 
 const iteration = ref(0)
 const interval = ref<number | null>(null)
@@ -14,7 +15,7 @@ const updateItems = () => {
     iteration.value = 0
   }
 
-  items.value.map((item) => {
+  items.value = items.value.map((item) => {
     if (item.items) {
       item.items = item.items.map((iItem) => {
         if (iItem.items) {
