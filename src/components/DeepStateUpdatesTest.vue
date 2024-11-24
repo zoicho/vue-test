@@ -34,7 +34,7 @@ const updateItems = () => {
 onMounted(() => {
   interval.value = setInterval(() => {
     updateItems()
-  }, 10)
+  }, 200)
 })
 
 onUnmounted(() => {
