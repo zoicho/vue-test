@@ -33,7 +33,7 @@ const updateMapItems = () => {
   const updated = [];
   for (let i = 0; i < 20; i++) {
     const randomNumber = getRandomNumber(0, 4999, 0)
-    const item = items.value.get(randomNumber)
+    const item = items.value.get(randomNumber)!
     item.active = true
     updated.push(item)
   }
